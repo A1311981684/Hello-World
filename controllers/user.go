@@ -1,8 +1,9 @@
 package controllers
 
 import (
-	"github.com/Hello-World/Hello-World/models"
+	"github.com/Hello-World/models"
 	"encoding/json"
+	"webJsonServe"
 
 	"github.com/astaxie/beego"
 )
@@ -117,3 +118,27 @@ func (u *UserController) Logout() {
 	u.ServeJSON()
 }
 
+// @Title 修改密码
+// @Description 修改密码
+// @Param uid query string true "用户id"
+// @Param pwd query string true "密码"
+// @Success 200 {string} 修改成功
+// @router /updatePWD [get]
+func (u *UserController) PWD() {
+	uid := u.GetString("uid", "")
+	pwd := u.GetString("pwd", "")
+
+	if uid == "" || pwd == "" {
+		webJsonServe.ServeFailed(&u.Controller, 500, "失败！")
+		return
+	}
+
+	if user, ok := models.UserList[uid]; ok {
+		user.Password = pwd
+		webJsonServe.ServeSuccess(&u.Controller, "修改成功！", user.Password)
+		return
+	}else {
+		webJsonServe.ServeFailed(&u.Controller, 500, "没有此用户！")
+		return
+	}
+}

@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/Hello-World/Hello-World/models"
+	"github.com/Hello-World/models"
 	"encoding/json"
 
 	"github.com/astaxie/beego"
