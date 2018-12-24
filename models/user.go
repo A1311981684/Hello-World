@@ -2,8 +2,6 @@ package models
 
 import (
 	"errors"
-	"strconv"
-	"time"
 )
 
 var (
@@ -31,7 +29,7 @@ type Profile struct {
 }
 
 func AddUser(u User) string {
-	u.Id = "user_" + strconv.FormatInt(time.Now().UnixNano(), 10)
+	//u.Id = "user_" + strconv.FormatInt(time.Now().UnixNano(), 10)
 	UserList[u.Id] = &u
 	return u.Id
 }
