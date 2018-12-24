@@ -36,7 +36,7 @@ func AddUser(u User) string {
 
 func GetUser(uid string) (u *User, err error) {
 	if u, ok := UserList[uid]; ok {
-		return u, nil
+			return u, nil
 	}
 	return nil, errors.New("User not exists")
 }
